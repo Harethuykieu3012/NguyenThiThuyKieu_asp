@@ -11,13 +11,14 @@ namespace NguyenThiThuyKieu_1.Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Product
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Avatar { get; set; }
-        public Nullable<int> Category { get; set; }
+        public Nullable<int> CategoryId { get; set; }
         public string ShortDes { get; set; }
         public string FullDescription { get; set; }
         public Nullable<double> Price { get; set; }
@@ -30,5 +31,7 @@ namespace NguyenThiThuyKieu_1.Context
         public Nullable<int> DisplayOrder { get; set; }
         public Nullable<System.DateTime> CreatedOnUtc { get; set; }
         public Nullable<System.DateTime> UpdatedOnUtc { get; set; }
+       
+       
     }
 }

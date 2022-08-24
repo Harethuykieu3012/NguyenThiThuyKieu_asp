@@ -11,7 +11,7 @@ namespace NguyenThiThuyKieu_1.Controllers
     {
         QuanLyBanHangEntities3 objquanLyBanHangEntities3 = new QuanLyBanHangEntities3();
         // GET: Product
-        public ActionResult Detail( int Id)
+        public ActionResult Detail (int Id)
         {
             var objProduct = objquanLyBanHangEntities3.Products.Where(n => n.Id == Id).FirstOrDefault();
             return View(objProduct);

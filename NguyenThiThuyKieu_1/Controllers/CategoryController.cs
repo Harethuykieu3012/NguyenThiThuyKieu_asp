@@ -17,5 +17,10 @@ namespace NguyenThiThuyKieu_1.Controllers
             var lstCategory = objquanLyBanHangEntities3.Categories.ToList();
             return View(lstCategory);
         }
+        public ActionResult ProductCategory(int Id)
+        {
+            var listCategory = objquanLyBanHangEntities3.Products.Where(n => n.CategoryId == Id).ToList();
+            return View(listCategory);
+        }
     }
 }
