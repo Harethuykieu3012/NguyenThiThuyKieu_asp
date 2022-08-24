@@ -1,7 +1,7 @@
 ﻿@model NguyenThiThuyKieu_1.Models.HomeModel
 @{
     ViewBag.Title = "Home Page";
-}
+}B
 <div class="container">
     <!-- ========================= SECTION MAIN  ========================= -->
     <section class="section-main padding-y">
@@ -15,7 +15,9 @@
                             <ul class="menu-category">
                                 @foreach (var item in Model.ListCategory)
                                 {
-                                    <li><a href="#">@item.Name</a></li>
+                                    <li>
+                                        @Html.ActionLink(item.Name,"ProductCategory","Category", new {@Id = item.Id},null)
+                                    </li>
                                 }
 
                             </ul>
@@ -94,15 +96,16 @@
                 </div>
             </div> <!-- col.// -->
             <div class="row no-gutters items-wrap">
-                @foreach (var item in Model.ListProduct.Where(n=>n.TypeId ==1).Take(3))
+                @foreach (var item in Model.ListProduct.Where(n=>n.TypeId == 1).Take(3))
                 {
                     <div class="col-md col-6">
                         <figure class="card-product-grid card-sm">
-                            <a href="#" class="img-wrap">
+                            <a href="@Url.Action("Detail", "Product", new { Id= item.Id })" class="img-wrap">
                                 <img src="~/Content/images/items/@item.Avatar">
                             </a>
                             <div class="text-wrap p-3">
-                                <a href="@Url.Action("Detail", "Product", new { Id=item.Id })" class="title">@item.Name</a>
+                                @*<a href="" class="title">@item.Name</a>*@
+                                @Html.ActionLink(item.Name, "Detail", "Product", new { Id = item.Id },null)
                                 <span class="badge badge-danger"> -20% </span>
                             </div>
                         </figure>
@@ -142,7 +145,6 @@
                                     <div class="card-body">
                                         <h6 class="title">@item.Name </h6>
                                         <img class="img-sm float-right" src="~/Content/images/items/@item.Avatar">
-                                        <p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
                                     </div>
                                 </a>
                             </li>
@@ -181,7 +183,6 @@
                                     <div class="card-body">
                                         <h6 class="title">@item.Name</h6>
                                         <img class="img-sm float-right" src="~/Content/images/items/@item.Avatar">
-                                        <p class="text-muted"><i class="fa fa-map-marker-alt"></i> Tokyo, Japan</p>
                                     </div>
                                 </a>
                             </li>

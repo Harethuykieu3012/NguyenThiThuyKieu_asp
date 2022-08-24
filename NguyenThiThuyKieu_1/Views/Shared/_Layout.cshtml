@@ -21,7 +21,7 @@
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
     <!-- Font awesome 5 -->
-    <link href="fonts/fontawesome/~/Content/css/all.min.css" type="text/css" rel="stylesheet">
+    <link href="fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
 
     <!-- custom style -->
     <link href="~/Content/css/ui.css" rel="stylesheet" type="text/css" />
@@ -70,7 +70,19 @@
                                         <i class="fa fa-user"></i>
                                         <span class="notify">3</span>
                                     </div>
-                                    <small class="text"> My profile </small>
+                                    @if (Session["idUser"] != null)
+                                    {
+                                            <a href="~/Admin/Product/Index">Admin</a>
+                                    
+                                        <a href="~/Home/Logout" class="btn btn-warning">Logout</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/Home/Register">Register</a>
+                                        <a href="~/Home/Login">Login</a>
+
+                                    }
+                                    @*<small class="text"> My profile </small>*@
                                 </a>
                             </div>
                             <div class="widget-header mr-3">
