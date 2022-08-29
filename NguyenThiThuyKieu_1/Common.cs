@@ -64,5 +64,12 @@ namespace NguyenThiThuyKieu_1
             public int Id { get; set; }
             public string IsAdmin { get; set; }
         }
+        public class BrandType
+        {
+            public int Id { get; set; }
+            public string IsAdmin { get; set; }
+            public string Name { get; internal set; }
+        }
+
     }
 }

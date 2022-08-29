@@ -7,7 +7,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Chỉnh sửa sản phẩm</h2>
 @using (Html.BeginForm("Index", "Category", FormMethod.Get))
 {
     <p>
@@ -35,15 +35,6 @@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().DisplayOrder)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Deleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().CreatedOnUtc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().UpdateOnUtc)
-        </th>
         <th></th>
     </tr>
 
@@ -64,15 +55,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DisplayOrder)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Deleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOnUtc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateOnUtc)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

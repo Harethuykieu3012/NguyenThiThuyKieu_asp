@@ -21,8 +21,8 @@
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
     <!-- Font awesome 5 -->
-    <link href="fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
-
+    <link href="~/fonts/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/fonts/fontawesome/css/all.min.css" rel="stylesheet" />
     <!-- custom style -->
     <link href="~/Content/css/ui.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/responsive.css" rel="stylesheet" type="text/css" />
@@ -72,8 +72,8 @@
                                     </div>
                                     @if (Session["idUser"] != null)
                                     {
-                                            <a href="~/Admin/Product/Index">Admin</a>
-                                    
+                                        <a href="~/Admin/Product/Index">Admin</a>
+
                                         <a href="~/Home/Logout" class="btn btn-warning">Logout</a>
                                     }
                                     else
@@ -85,29 +85,24 @@
                                     @*<small class="text"> My profile </small>*@
                                 </a>
                             </div>
-                            <div class="widget-header mr-3">
-                                <a href="#" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-comment-dots"></i>
-                                        <span class="notify">1</span>
-                                    </div>
-                                    <small class="text"> Message </small>
-                                </a>
-                            </div>
-                            <div class="widget-header mr-3">
-                                <a href="#" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-store"></i>
-                                    </div>
-                                    <small class="text"> Orders </small>
-                                </a>
-                            </div>
+                            
                             <div class="widget-header">
-                                <a href="#" class="widget-view">
+                                <a href="@Url.Action("Index","Cart")">
                                     <div class="icon-area">
                                         <i class="fa fa-shopping-cart"></i>
+                                        @if (@Session["count"] == null)
+                                        {
+                                            <span class="notify" id="CartCount">0</span>
+
+                                        }
+                                        else
+                                        {
+                                            <span class="notify" id="CartCount">@Session["count"]</span>
+
+                                        }
+
                                     </div>
-                                    <small class="text"> Cart </small>
+                                    <small class="text"> Giỏ hàng </small>
                                 </a>
                             </div>
                         </div> <!-- widgets-wrap.// -->
@@ -115,10 +110,7 @@
                 </div> <!-- row.// -->
             </div> <!-- container.// -->
         </section> <!-- header-main .// -->
-
-
-
-        <nav class="navbar navbar-main navbar-expand-lg border-bottom">
+        @*<nav class="navbar navbar-main navbar-expand-lg border-bottom">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -127,33 +119,8 @@
                 <div class="collapse navbar-collapse" id="main_nav">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-bars text-muted mr-2"></i> Demo pages </a>
-                            <div class="dropdown-menu dropdown-large">
-                                <nav class="row">
-                                    <div class="col-6">
-                                        <a href="page-index-1.html">Home page 1</a>
-                                        <a href="page-index-2.html">Home page 2</a>
-                                        <a href="page-category.html">All category</a>
-                                        <a href="page-listing-large.html">Listing list</a>
-                                        <a href="page-listing-grid.html">Listing grid</a>
-                                        <a href="page-shopping-cart.html">Shopping cart</a>
-                                        <a href="page-detail-product.html">Product detail</a>
-                                        <a href="page-content.html">Page content</a>
-                                        <a href="page-user-login.html">Page login</a>
-                                        <a href="page-user-register.html">Page register</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="page-profile-main.html">Profile main</a>
-                                        <a href="page-profile-orders.html">Profile orders</a>
-                                        <a href="page-profile-seller.html">Profile seller</a>
-                                        <a href="page-profile-wishlist.html">Profile wishlist</a>
-                                        <a href="page-profile-setting.html">Profile setting</a>
-                                        <a href="page-profile-address.html">Profile address</a>
-                                        <a href="rtl-page-index-1.html">RTL home page</a>
-                                        <a href="page-components.html" target="_blank">More components</a>
-                                    </div>
-                                </nav> <!--  row end .// -->
-                            </div> <!--  dropdown-menu dropdown-large end.// -->
+                            <a class="nav" href="@Url.Action("Index","Home")"> <i class="fa fa-bars text-muted mr-2"></i> Trang Chủ </a>
+                              dropdown-menu dropdown-large end.//
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Ready to ship</a>
@@ -182,12 +149,36 @@
                             </div>
                         </li>
                     </ul>
+                </div>  collapse .//
+            </div>  container .//
+        </nav>*@
+        <nav class="navbar navbar-main navbar-expand-lg border-bottom">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="main_nav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index","Home")">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index","Category")">Tất cả danh mục</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> Thông tin hay</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Khuyến mãi</a>
+                        </li>
+
+                    </ul>
                 </div> <!-- collapse .// -->
             </div> <!-- container .// -->
         </nav>
 
     </header> <!-- section-header.// -->
-
     @RenderBody()
     <!-- ========================= FOOTER ========================= -->
     <footer class="section-footer bg-secondary">
@@ -195,50 +186,29 @@
             <section class="footer-top padding-y-lg text-white">
                 <div class="row">
                     <aside class="col-md col-6">
-                        <h6 class="title">Brands</h6>
+                        <h6 class="title">Thương Hiệu</h6>
                         <ul class="list-unstyled">
-                            <li> <a href="#">Adidas</a></li>
-                            <li> <a href="#">Puma</a></li>
-                            <li> <a href="#">Reebok</a></li>
-                            <li> <a href="#">Nike</a></li>
+                            <li> <a href="#">Iphone</a></li>
+                            <li> <a href="#">Samsung</a></li>
+                            <li> <a href="#">Oppo</a></li>
+                            <li> <a href="#">Xaomi</a></li>
                         </ul>
                     </aside>
+
+
                     <aside class="col-md col-6">
-                        <h6 class="title">Company</h6>
+                        <h6 class="title">Liên Hệ</h6>
                         <ul class="list-unstyled">
-                            <li> <a href="#">About us</a></li>
-                            <li> <a href="#">Career</a></li>
-                            <li> <a href="#">Find a store</a></li>
-                            <li> <a href="#">Rules and terms</a></li>
-                            <li> <a href="#">Sitemap</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-md col-6">
-                        <h6 class="title">Help</h6>
-                        <ul class="list-unstyled">
-                            <li> <a href="#">Contact us</a></li>
-                            <li> <a href="#">Money refund</a></li>
-                            <li> <a href="#">Order status</a></li>
-                            <li> <a href="#">Shipping info</a></li>
-                            <li> <a href="#">Open dispute</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-md col-6">
-                        <h6 class="title">Account</h6>
-                        <ul class="list-unstyled">
-                            <li> <a href="#"> User Login </a></li>
-                            <li> <a href="#"> User register </a></li>
-                            <li> <a href="#"> Account Setting </a></li>
-                            <li> <a href="#"> My Orders </a></li>
+                            <li> <a href="#"> 18002525</a></li>
                         </ul>
                     </aside>
                     <aside class="col-md">
                         <h6 class="title">Social</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
-                            <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
-                            <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
-                            <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
+                            <li><a href="#"> <i class="fab fa-facebook"></i> Facebook:Thế Giới Di Động </a></li>
+                            <li><a href="#"> <i class="fab fa-twitter"></i> Twitter:Thế Giới Di Động </a></li>
+                            <li><a href="#"> <i class="fab fa-instagram"></i> Instagram:Thế Giới Di Động </a></li>
+                            <li><a href="#"> <i class="fab fa-youtube"></i> Youtube:Thế Giới Di Động </a></li>
                         </ul>
                     </aside>
                 </div> <!-- row.// -->

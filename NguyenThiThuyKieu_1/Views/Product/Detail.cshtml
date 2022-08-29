@@ -3,34 +3,72 @@
     ViewBag.Title = "Detail";
 }
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = @Model.Id;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#ipQuantity").val();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Thêm vào giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <section class="py-3 bg-light">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Category name</a></li>
-            <li class="breadcrumb-item"><a href="#">Sub category</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Items</li>
+            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Chi tiết sản phẩm</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
         </ol>
     </div>
 </section>
 
-<!-- ========================= SECTION CONTENT ========================= -->
+
+
+
+
+
+
 <section class="section-content bg-white padding-y">
     <div class="container">
 
         <!-- ============================ ITEM DETAIL ======================== -->
         <div class="row">
             <aside class="col-md-6">
+
                 <div class="card">
                     <article class="gallery-wrap">
                         <div class="img-big-wrap">
-                            <div> <a href="#"><img src="~/Content/images/items/dienthoai.jpg"></a></div>
+                            <div> <a href="#"><img src="~/Content/images/items/@Model.Avatar"></a></div>
                         </div> <!-- slider-product.// -->
                         <div class="thumbs-wrap">
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/dienthoai.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/dienthoai.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/dienthoai.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/dienthoai.jpg"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/h10.jpg"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avatar"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/h8.jpg"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/h6.jpg"></a>
                         </div> <!-- slider-nav.// -->
                     </article> <!-- gallery-wrap .end// -->
                 </div> <!-- card.// -->
@@ -38,7 +76,7 @@
             <main class="col-md-6">
                 <article class="product-info-aside">
 
-                    <h2 class="title mt-3">Hot sale unisex New Design Shoe </h2>
+                    <h2 class="title mt-3">@Model.Name </h2>
 
                     <div class="rating-wrap my-3">
                         <ul class="rating-stars">
@@ -90,18 +128,18 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-light" type="button" id="button-plus"> + </button>
                                 </div>
-                                <input type="text" class="form-control" value="1">
+                                <input type="text" class="form-control" id="ipQuantity" value="1">
                                 <div class="input-group-append">
                                     <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
                                 </div>
                             </div>
                         </div> <!-- col.// -->
                         <div class="form-group col-md">
-                            <a href="#" class="btn  btn-primary">
-                                <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span>
-                            </a>
-                            <a href="#" class="btn btn-light">
-                                <i class="fas fa-envelope"></i> <span class="text">Contact supplier</span>
+                            <a href="#" id="addtocart" class="btn  btn-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="text">
+                                    Thêm vào giỏ hàng
+                                </span>
                             </a>
                         </div> <!-- col.// -->
                     </div> <!-- row.// -->
@@ -128,7 +166,6 @@
             <aside class="col-md-4">
 
                 <div class="box">
-
                     <h5 class="title-description">Files</h5>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -198,4 +235,3 @@
 
     </div>
 </section>
-<!-- ========================= SECTION SUBSCRIBE END// ========================= -->

@@ -29,13 +29,13 @@ namespace NguyenThiThuyKieu_1.Context
 
         public System.Web.HttpPostedFileBase ImageUpload { get; set; }
     }
-    //[MetadataType(typeof(BrandMasterData))]
-    //public partial class Brand
-    //{
+    [MetadataType(typeof(BrandMasterData))]
+    public partial class Brand
+    {
 
-    //    [NotMapped]
+        [NotMapped]
 
-    //    public System.Web.HttpPostedFileBase ImageUpload { get; set; }
-    //}
+        public System.Web.HttpPostedFileBase ImageUpload { get; set; }
+    }
 
 }
